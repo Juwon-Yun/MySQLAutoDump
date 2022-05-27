@@ -37,7 +37,7 @@ clone 받은 폴더에서
 
 아래 명령어를 입력한 뒤 esc -> :wq -> enter
 
-    * 10 * * 5 sh db_backup.sh
+    * 10 * * 5 cd backUp && sh db_backup.sh
     
     분 | 시 | 일 | 월 | 요일 | 명령어 
     => 매주 금요일 10시에 db_backup 스크립트 실행
@@ -65,6 +65,6 @@ sh db_backup.sh 명령어 실행 시
 
     모든 정보 삭제 mysql_config_editor remve
 
-    등록된 스케쥴 전부 출력 mysql_config_editor print —all
+    등록된 정보 전부 출력 mysql_config_editor print —all
 
     mysql 접속 -> mysql —login-path={설정된 값}
