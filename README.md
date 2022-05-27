@@ -1,4 +1,5 @@
-> MySQL Auto Dump(MAD) v1
+# 👨🏻‍🔧
+> MySQL Auto Dump(MAD)  v1
 
 SQL 파일로 자동 덤프 설정하기 
 
