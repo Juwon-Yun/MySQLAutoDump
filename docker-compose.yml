@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  # 컨테이너 명, 수정시에 Readme.md 명령어도 똑같이 수정해야합니다.
+  testAutoDump:
+    # Mysql image 버전 정보를 입력합니다 ex) 5.7.22 -> 5.7.22 입력 
+    image: mysql:5.7
+    # 실행하는 platform에 맞는 사양을 입력합니다.
+    platform: linux/x86_64
+    volumes:
+      - "./data:/var/lib/mysql:rw"
+      - "./mysql-init:/docker-entrypoint-initdb.d"
+    restart: always
+    ports:
+      - "49970:3306"
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      # 사용할 DB의 이름, 수정시에 init.sql의 Database 이름도 수정해야합니다.
+      MYSQL_DATABASE: testDbForAutoDump
+      # mysql -u 에 사용하는 사용자명
+      MYSQL_USER: testUser
+      # mysql에 사용하는 비밀번호
+      MYSQL_PASSWORD: 1234
+      TZ: Asia/Seoul
+    # 사용할 메모리 최대용량
+    mem_limit: 2g
+    # 사용할 cpu의 개수 ex) 1/4개 => ".25"
+    cpus: 1
