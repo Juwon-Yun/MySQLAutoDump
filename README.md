@@ -1,19 +1,21 @@
-# 👨🏻‍🔧
-> MySQL Auto Dump(MAD)  v1
+# 👨🏻‍🔧 MySQL Auto Dump(MAD)  v1
 
-SQL 파일로 자동 덤프 설정하기 
+# 🤷🏻 When
+로컬 DB 혹은 개발용 DB 백업을 자동화하고 싶을 때 사용합니다.
 
-초기 버전이므로 사전에 세팅할 것들이 많습니다.
+# 🚀 How
+다섯가지 사전 세팅이 필요합니다.
 
 1. docker-compose 
 2. Mysql Image (5.7^), 5.6 버전과 5.7 버전은 명령어가 다릅니다.
 3. vim in docker-container
 4. cron in docker-container
 5. 테이블이 존재하는 DB 스키마
+#
 
-> git clone this repo
+    git clone this repo
 
-clone 받은 폴더에서 
+    clone 받은 경로 위치에서
 
     $docker-compose up -d 
 
@@ -35,14 +37,14 @@ clone 받은 폴더에서
 
 입력하면 vim editer와 같은 창이 열립니다.
 
-아래 명령어를 입력한 뒤 esc -> :wq -> enter
+아래 명령어를 입력한 뒤
 
     * 10 * * 5 cd backUp && sh db_backup.sh
     
     분 | 시 | 일 | 월 | 요일 | 명령어 
     => 매주 금요일 10시에 db_backup 스크립트 실행
 
-입력 한 뒤에 :wq 명령어로 저장
+    esc -> :wq -> enter 후 입력한 내용 저장
 
 crontab을 재실행합니다.
 
@@ -50,16 +52,19 @@ crontab을 재실행합니다.
 
 db 오류가 발생하지 않는다면 정상적으로 작동할 것입니다.
 
-sh db_backup.sh 명령어 실행 시
+
+
+# 💡 Tips
+1. sh db_backup.sh 명령어 실행 시
 
     you need (at least one of) the PROCESS privilege(s) for this operation
 
-해당 오류는 테이블이 존재해야 합니다. 
+    해당 오류는 테이블이 존재해야 합니다. 
 
-혹은 use --no-tablespaces 를 사용해도 되지만 추천하지 않음
+    혹은 use --no-tablespaces 를 사용해도 되지만 비권장입니다.
 
-
-    기타 명령어들 
+#
+2.  기타 명령어들 
 
     접속 정보만 삭제 mysql_config_editor remove —login-path={설정된 값}
 
@@ -68,3 +73,5 @@ sh db_backup.sh 명령어 실행 시
     등록된 정보 전부 출력 mysql_config_editor print —all
 
     mysql 접속 -> mysql —login-path={설정된 값}
+#
+3. 자동으로 백업되는 .sql 파일을 crontab의 추가적인 스케줄링으로 Docker에서 로컬 환경으로 옮길 수 있습니다.
